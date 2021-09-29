@@ -1,0 +1,10 @@
+
+*.dll
+*.exe
+*.v2
+*.cache
+*.props
+*.pdb
+*.txt
+*.config
+.vs/App_Facultate/v16/.suo
