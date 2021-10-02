@@ -27,16 +27,23 @@ namespace Authentication.Controller
 
             //_context.Utilizatori.FromSqlRaw("SELECT * FROM Utilizatori").ToList();
 
-             var name = _context.Utilizatori.Find(1).email;
+             //var name = _context.Utilizatori.Find(1).email;
 
-            /*var name = _context.Utilizatori.Select(s => new
+            
+            // lista de utilizatori
+            var usersList = _context.Utilizatori.Select(s => new
             {
                 nume = s.nume,
                 username = s.prenume
-            });*/
+            });
 
 
-
+            // numar de utilizatori
+            var count = _context.Utilizatori.Select(s => new
+            {
+                nume = s.nume,
+                username = s.prenume
+            }).Count();
 
             return "ac";
         }
