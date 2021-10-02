@@ -28,6 +28,7 @@ namespace App_Facultate
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+          
             services.AddDbContext<FacultateContext>(options =>
             options.UseSqlServer("Server=DESKTOP-L0JCS3H\\MSSQLSERVER01; Database=FacultateDB; Trusted_Connection= True; MultipleActiveResultSets=True; User ID=CommanderAPI; Password=Destinul04;"));
 
