@@ -19,7 +19,7 @@ namespace Authentication.Controller
 
         [HttpGet("login/")]
         //public String checkLogin(String username, [FromBody] String password)
-        public String checkLogin(String username)
+        public String checkLogin(String username, [FromBody] String password)
         {
             // return _context.Utilizatori.FromSqlRaw("SELECT username FROM Utilizatori")
             //     .ToString();
@@ -42,6 +42,14 @@ namespace Authentication.Controller
             var count = _context.Utilizatori.Select(s => new
             {
                 nume = s.nume,
+                username = s.prenume
+            }).Count();
+
+            var findUsers = _context.Utilizatori
+                .Where(s => s.username == username)
+                .Select(s => new
+            {
+                parola = s.parola,
                 username = s.prenume
             }).Count();
 
