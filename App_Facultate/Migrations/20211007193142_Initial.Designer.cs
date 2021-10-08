@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App_Facultate.Migrations
 {
     [DbContext(typeof(FacultateContext))]
-    [Migration("20210902101932_Add Schema Database2")]
-    partial class AddSchemaDatabase2
+    [Migration("20211007193142_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Commander.Model.Administratori", b =>
@@ -38,7 +38,7 @@ namespace App_Facultate.Migrations
 
                     b.HasIndex("Utilizatoriid_utilizator");
 
-                    b.ToTable("Administrator");
+                    b.ToTable("Administratori");
                 });
 
             modelBuilder.Entity("Commander.Model.Studenti", b =>
@@ -51,7 +51,13 @@ namespace App_Facultate.Migrations
                     b.Property<int?>("Specializariid_Specializare")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Utilizatoriid_utilizator")
+                        .HasColumnType("int");
+
                     b.Property<int>("id_specializare")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_utilizatori")
                         .HasColumnType("int");
 
                     b.Property<bool>("scutit_plata")
@@ -61,7 +67,9 @@ namespace App_Facultate.Migrations
 
                     b.HasIndex("Specializariid_Specializare");
 
-                    b.ToTable("Student");
+                    b.HasIndex("Utilizatoriid_utilizator");
+
+                    b.ToTable("Studenti");
                 });
 
             modelBuilder.Entity("Commander.Model.Utilizatori", b =>
@@ -96,7 +104,7 @@ namespace App_Facultate.Migrations
 
                     b.HasKey("id_utilizator");
 
-                    b.ToTable("Utilizator");
+                    b.ToTable("Utilizatori");
                 });
 
             modelBuilder.Entity("Commander.Models.Calificative", b =>
@@ -127,7 +135,7 @@ namespace App_Facultate.Migrations
 
                     b.HasIndex("Studentiid_student");
 
-                    b.ToTable("Calificativ");
+                    b.ToTable("Calificative");
                 });
 
             modelBuilder.Entity("Commander.Models.Materii", b =>
@@ -144,7 +152,7 @@ namespace App_Facultate.Migrations
 
                     b.HasKey("id_materie");
 
-                    b.ToTable("Materie");
+                    b.ToTable("Materii");
                 });
 
             modelBuilder.Entity("Commander.Models.Profesori", b =>
@@ -178,7 +186,7 @@ namespace App_Facultate.Migrations
 
                     b.HasIndex("Utilizatoriid_utilizator");
 
-                    b.ToTable("Profesor");
+                    b.ToTable("Profesori");
                 });
 
             modelBuilder.Entity("Commander.Models.Specializari", b =>
@@ -195,7 +203,7 @@ namespace App_Facultate.Migrations
 
                     b.HasKey("id_Specializare");
 
-                    b.ToTable("Specializare");
+                    b.ToTable("Specializari");
                 });
 
             modelBuilder.Entity("Commander.Model.Administratori", b =>
@@ -213,7 +221,13 @@ namespace App_Facultate.Migrations
                         .WithMany()
                         .HasForeignKey("Specializariid_Specializare");
 
+                    b.HasOne("Commander.Model.Utilizatori", "Utilizatori")
+                        .WithMany()
+                        .HasForeignKey("Utilizatoriid_utilizator");
+
                     b.Navigation("Specializari");
+
+                    b.Navigation("Utilizatori");
                 });
 
             modelBuilder.Entity("Commander.Models.Calificative", b =>

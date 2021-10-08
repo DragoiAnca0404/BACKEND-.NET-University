@@ -28,6 +28,45 @@ namespace Authentication.Controller
                 username = s.prenume
             }).Count();
 
+            var userId = _context.Utilizatori
+                .Where(s => s.username.Equals(username) && s.parola.Equals(password))
+                .Select(s => new
+                {
+                    id_utilizator = s.id_utilizator
+                });
+
+            var studentId = _context.Studenti
+                .Select(s => new
+                {
+                    id_utilizatori = s.id_utilizatori
+                });
+
+            var adminId = _context.Administratori
+                .Select(s => new
+                {
+                    id_utilizator = s.id_utilizator
+                });
+            var profesorId = _context.Profesori
+                .Select(s => new
+                {
+                    id_utilizator = s.id_utilizator
+                });
+            
+            if (userId == studentId)
+            {
+            }
+             else if (userId == adminId)
+            {
+
+            }
+             else if (userId == profesorId)
+            {
+
+            }
+             else
+            {
+                return NotFound();
+            }
             return userExists.Equals(1) ? Ok("User-ul exista!") : NotFound();
         }
     }

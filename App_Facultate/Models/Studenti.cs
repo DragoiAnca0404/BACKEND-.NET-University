@@ -15,5 +15,8 @@ namespace Commander.Model
         // Foreign key
         public int id_specializare { get; set; }
         public virtual Specializari Specializari { get; set; }
+
+        public int id_utilizatori { get; set; }
+        public virtual Utilizatori Utilizatori { get; set; }
     }
 }
