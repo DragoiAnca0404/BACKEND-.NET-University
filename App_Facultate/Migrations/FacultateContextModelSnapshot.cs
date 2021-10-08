@@ -4,21 +4,19 @@ using Commander.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace App_Facultate.Migrations
 {
     [DbContext(typeof(FacultateContext))]
-    [Migration("20210906111316_Generate")]
-    partial class Generate
+    partial class FacultateContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Commander.Model.Administratori", b =>
@@ -51,7 +49,13 @@ namespace App_Facultate.Migrations
                     b.Property<int?>("Specializariid_Specializare")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Utilizatoriid_utilizator")
+                        .HasColumnType("int");
+
                     b.Property<int>("id_specializare")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_utilizatori")
                         .HasColumnType("int");
 
                     b.Property<bool>("scutit_plata")
@@ -60,6 +64,8 @@ namespace App_Facultate.Migrations
                     b.HasKey("id_student");
 
                     b.HasIndex("Specializariid_Specializare");
+
+                    b.HasIndex("Utilizatoriid_utilizator");
 
                     b.ToTable("Studenti");
                 });
@@ -213,7 +219,13 @@ namespace App_Facultate.Migrations
                         .WithMany()
                         .HasForeignKey("Specializariid_Specializare");
 
+                    b.HasOne("Commander.Model.Utilizatori", "Utilizatori")
+                        .WithMany()
+                        .HasForeignKey("Utilizatoriid_utilizator");
+
                     b.Navigation("Specializari");
+
+                    b.Navigation("Utilizatori");
                 });
 
             modelBuilder.Entity("Commander.Models.Calificative", b =>
