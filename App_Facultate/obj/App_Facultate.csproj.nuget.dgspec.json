@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj": {}
+    "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj": {
+    "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj",
+        "projectUniqueName": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj",
         "projectName": "App_Facultate",
-        "projectPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj",
-        "packagesPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\obj\\",
+        "projectPath": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj",
+        "packagesPath": "C:\\Users\\anca_\\.nuget\\packages\\",
+        "outputPath": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ciure.DESKTOP-73GSI3U\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\anca_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +27,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj": {
+                "projectPath": "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -81,7 +85,71 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj",
+        "projectName": "Entities",
+        "projectPath": "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\anca_\\.nuget\\packages\\",
+        "outputPath": "E:\\Facultate_proiect\\App_Facultate\\Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\anca_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

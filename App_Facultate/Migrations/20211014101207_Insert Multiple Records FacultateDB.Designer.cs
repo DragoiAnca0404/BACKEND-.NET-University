@@ -4,14 +4,16 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace App_Facultate.Migrations
 {
     [DbContext(typeof(FacultateContext))]
-    partial class FacultateContextModelSnapshot : ModelSnapshot
+    [Migration("20211014101207_Insert Multiple Records FacultateDB")]
+    partial class InsertMultipleRecordsFacultateDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -366,41 +368,41 @@ namespace App_Facultate.Migrations
                         {
                             id_profesor = 1,
                             grad = 0,
-                            id_materie = 1,
-                            id_utilizator = 1,
-                            salariu = 5000m
+                            id_materie = 0,
+                            id_utilizator = 0,
+                            salariu = 0m
                         },
                         new
                         {
                             id_profesor = 2,
                             grad = 1,
-                            id_materie = 2,
-                            id_utilizator = 2,
-                            salariu = 5800m
+                            id_materie = 0,
+                            id_utilizator = 0,
+                            salariu = 0m
                         },
                         new
                         {
                             id_profesor = 3,
                             grad = 2,
-                            id_materie = 3,
-                            id_utilizator = 3,
-                            salariu = 7830m
+                            id_materie = 0,
+                            id_utilizator = 0,
+                            salariu = 0m
                         },
                         new
                         {
                             id_profesor = 4,
                             grad = 3,
-                            id_materie = 4,
-                            id_utilizator = 4,
-                            salariu = 4000m
+                            id_materie = 0,
+                            id_utilizator = 0,
+                            salariu = 0m
                         },
                         new
                         {
                             id_profesor = 5,
                             grad = 0,
-                            id_materie = 5,
-                            id_utilizator = 5,
-                            salariu = 6700m
+                            id_materie = 0,
+                            id_utilizator = 0,
+                            salariu = 0m
                         });
                 });
 

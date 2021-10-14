@@ -1,7 +1,7 @@
-using Commander.Models;
+using Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Commander.Model
+namespace Model
 {
     public class Studenti
     {
@@ -16,7 +16,7 @@ namespace Commander.Model
         public int id_specializare { get; set; }
         public virtual Specializari Specializari { get; set; }
 
-        public int id_utilizatori { get; set; }
+        public int id_utilizator { get; set; }
         public virtual Utilizatori Utilizatori { get; set; }
     }
 }

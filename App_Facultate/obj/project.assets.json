@@ -2081,6 +2081,20 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.10",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.10"
+        },
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
       }
     }
   },
@@ -7325,10 +7339,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Entities >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.10",
@@ -7337,19 +7357,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ciure.DESKTOP-73GSI3U\\.nuget\\packages\\": {}
+    "C:\\Users\\anca_\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj",
+      "projectUniqueName": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj",
       "projectName": "App_Facultate",
-      "projectPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj",
-      "packagesPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\App_Facultate\\obj\\",
+      "projectPath": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj",
+      "packagesPath": "C:\\Users\\anca_\\.nuget\\packages\\",
+      "outputPath": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ciure.DESKTOP-73GSI3U\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anca_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7362,7 +7382,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj": {
+              "projectPath": "E:\\Facultate_proiect\\App_Facultate\\Entities\\Entities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -7416,7 +7440,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

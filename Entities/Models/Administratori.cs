@@ -1,7 +1,7 @@
-using Commander.Models;
+using Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Commander.Model
+namespace Model
 {
     public class Administratori
     {

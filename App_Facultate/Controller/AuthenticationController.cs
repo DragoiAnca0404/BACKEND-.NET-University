@@ -1,4 +1,4 @@
-using Commander.Data;
+using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,7 +19,17 @@ namespace Authentication.Controller
 
         [HttpGet("login/")]
         public IActionResult checkLogin(String username, [FromBody] String password)
-        {            
+        {
+         
+
+            var userExists = _context.Utilizatori
+                .Where(s => s.username.Equals(username) && s.parola.Equals(password))
+                .Select(s => new
+            {
+                parola = s.parola,
+                username = s.prenume
+            }).Count();
+
             var userId = _context.Utilizatori
                 .Where(s => s.username.Equals(username) && s.parola.Equals(password))
                 .Select(s => new
@@ -35,7 +45,7 @@ namespace Authentication.Controller
             var studentId = _context.Studenti
                 .Select(s => new
                 {
-                    id_utilizatori = s.id_utilizatori
+                    id_utilizatori = s.id_utilizator
                 });
 
             if (userId == studentId)
@@ -64,10 +74,19 @@ namespace Authentication.Controller
 
             if (userId == profesorId)
             {
-                return Ok("Profesor");
+                //return NotFound();
+                return Ok();
             }
 
             return NotFound();
         }
+    /*   [HttpGet("insert/")]
+        public IActionResult insertUsers()
+        {
+            //_context.Utilizatori.Add(new Commander.Model.Utilizatori { username = "VasileIon05", nume = "Popescu", prenume = "Vasile Ion", parola = "3333267AAA*", email = "p_ion@gmail.com" });
+            //_context.Utilizatori.Add(new Commander.Model.Utilizatori { username = "MateiSolomon", nume = "Solomon", prenume = "Matei", parola = "matte777*", email = "matei_matt@yahoo.ro" });
+            _context.SaveChanges();
+            return Ok();
+        } */
     }
 }
