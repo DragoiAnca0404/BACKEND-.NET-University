@@ -17,58 +17,68 @@ namespace Authentication.Controller
             _context = context;
         }
 
-     /*   [HttpGet("login/")]
+       [HttpGet("login/")]
         public IActionResult checkLogin(String username, [FromBody] String password)
         {
-            var userId = _context.Utilizatori
+            var user = _context.Utilizatori
                 .Where(s => s.username.Equals(username) && s.parola.Equals(password))
                 .Select(s => new
                 {
                     id_utilizator = s.id_utilizator
                 });
 
-            if (userId == null)
+            if (user.Count().Equals(0))
             {
-                return NotFound();
+                return NotFound("No such user!");
             }
 
-            var studentId = _context.Studenti
-                .Where(s => s.id_utilizator.Equals(userId.First().id_utilizator))
+            var student = _context.Studenti
+                .Where(s => s.id_utilizator.Equals(user.First().id_utilizator))
                 .Select(s => new
                 {
                     id_utilizator = s.id_utilizator
                 });
 
-            if (userId.First().id_utilizator == studentId.First().id_utilizator)
-            {
-                return Ok("Student");
-            }
-
-            var adminId = _context.Administratori
+            var profesor = _context.Profesori
+                .Where(s => s.id_utilizator.Equals(user.First().id_utilizator))
                 .Select(s => new
                 {
                     id_utilizator = s.id_utilizator
                 });
 
-            if (userId == adminId)
-            {
-                return Ok("Administrator");
-
-            }
-
-            var profesorId = _context.Profesori
+            var admin = _context.Administratori
+                .Where(s => s.id_utilizator.Equals(user.First().id_utilizator))
                 .Select(s => new
                 {
                     id_utilizator = s.id_utilizator
                 });
-            
 
-            if (userId == profesorId)
+
+            if (student.Count().Equals(1))
             {
-                return Ok("Profesor");
+                if (user.First().id_utilizator.Equals(student.First().id_utilizator))
+                {
+                    return Ok("Student");
+                }
+            }
+
+            if (profesor.Count().Equals(1))
+            {
+                if (user.First().id_utilizator.Equals(profesor.First().id_utilizator))
+                {
+                    return Ok("Profesor");
+                }
+            }
+
+            if (admin.Count().Equals(1))
+            {
+                if (user.First().id_utilizator.Equals(admin.First().id_utilizator))
+                {
+                    return Ok("Admin");
+                }
             }
 
             return NotFound();
-        }*/
+        }
     }
 }
