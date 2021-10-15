@@ -28,15 +28,9 @@ namespace Data
 
             modelBuilder.Entity<Studenti>().HasData(new Studenti {id_student=1, scutit_plata=true, id_specializare=1, id_utilizator=1 });
             modelBuilder.Entity<Studenti>().HasData(new Studenti { id_student = 2, scutit_plata = false, id_specializare = 2, id_utilizator = 2 });
-            modelBuilder.Entity<Studenti>().HasData(new Studenti { id_student = 3, scutit_plata = false, id_specializare = 3, id_utilizator = 3 });
-            modelBuilder.Entity<Studenti>().HasData(new Studenti { id_student = 4, scutit_plata = true, id_specializare = 4, id_utilizator = 4 });
-            modelBuilder.Entity<Studenti>().HasData(new Studenti { id_student = 5, scutit_plata = false, id_specializare = 5, id_utilizator = 5 });
 
-            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor=1, salariu=5000, grad= grad.Asistent_universitar, id_utilizator=1,id_materie=1});
-            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor = 2, salariu = 5800, grad = grad.Lector_universitar, id_utilizator = 2, id_materie = 2 });
-            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor = 3, salariu = 7830, grad = grad.Conferentiar_universitar, id_utilizator = 3, id_materie = 3 });
-            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor = 4, salariu = 4000, grad = grad.Profesor_universitar,id_utilizator = 4, id_materie = 4 });
-            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor = 5, salariu = 6700, grad = grad.Asistent_universitar,id_utilizator = 5, id_materie = 5 });
+            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor=1, salariu=5000, grad= grad.Asistent_universitar, id_utilizator=3,id_materie=1});
+            modelBuilder.Entity<Profesori>().HasData(new Profesori { id_profesor = 2, salariu = 5800, grad = grad.Lector_universitar, id_utilizator = 4, id_materie = 2 });
 
             modelBuilder.Entity<Materii>().HasData(new Materii { id_materie =1, denumire_materie="Statistica economica" });
             modelBuilder.Entity<Materii>().HasData(new Materii { id_materie = 2, denumire_materie = "Psihologie politica" });
@@ -46,16 +40,9 @@ namespace Data
 
             modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Specializare=1, nota=10, id_materie=1, id_student=1 });
             modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Specializare = 2, nota = 9.05, id_materie = 2, id_student = 2 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Specializare = 3, nota = 7.50, id_materie = 3, id_student = 3 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Specializare = 4, nota = 5.65, id_materie = 4, id_student = 4 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Specializare = 5, nota = 4.80, id_materie = 5, id_student = 5 });
 
-            modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator=1, id_utilizator=1 });
-            modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator = 2, id_utilizator = 2 });
-            modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator = 3, id_utilizator = 3 });
-            modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator = 4, id_utilizator = 4 });
-            modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator = 5, id_utilizator = 5 });
-
+            modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator=1, id_utilizator=5 });
+          
         }
 
         public DbSet<Specializari> Specializari { get; set; }

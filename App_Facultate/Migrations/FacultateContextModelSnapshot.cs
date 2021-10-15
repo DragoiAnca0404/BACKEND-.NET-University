@@ -42,26 +42,6 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_administrator = 1,
-                            id_utilizator = 1
-                        },
-                        new
-                        {
-                            id_administrator = 2,
-                            id_utilizator = 2
-                        },
-                        new
-                        {
-                            id_administrator = 3,
-                            id_utilizator = 3
-                        },
-                        new
-                        {
-                            id_administrator = 4,
-                            id_utilizator = 4
-                        },
-                        new
-                        {
-                            id_administrator = 5,
                             id_utilizator = 5
                         });
                 });
@@ -82,7 +62,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_specializare")
                         .HasColumnType("int");
 
-                    b.Property<int>("id_utilizatori")
+                    b.Property<int>("id_utilizator")
                         .HasColumnType("int");
 
                     b.Property<bool>("scutit_plata")
@@ -101,35 +81,14 @@ namespace App_Facultate.Migrations
                         {
                             id_student = 1,
                             id_specializare = 1,
-                            id_utilizatori = 1,
+                            id_utilizator = 1,
                             scutit_plata = true
                         },
                         new
                         {
                             id_student = 2,
                             id_specializare = 2,
-                            id_utilizatori = 2,
-                            scutit_plata = false
-                        },
-                        new
-                        {
-                            id_student = 3,
-                            id_specializare = 3,
-                            id_utilizatori = 3,
-                            scutit_plata = false
-                        },
-                        new
-                        {
-                            id_student = 4,
-                            id_specializare = 4,
-                            id_utilizatori = 4,
-                            scutit_plata = true
-                        },
-                        new
-                        {
-                            id_student = 5,
-                            id_specializare = 5,
-                            id_utilizatori = 5,
+                            id_utilizator = 2,
                             scutit_plata = false
                         });
                 });
@@ -260,27 +219,6 @@ namespace App_Facultate.Migrations
                             id_materie = 2,
                             id_student = 2,
                             nota = 9.0500000000000007
-                        },
-                        new
-                        {
-                            id_Specializare = 3,
-                            id_materie = 3,
-                            id_student = 3,
-                            nota = 7.5
-                        },
-                        new
-                        {
-                            id_Specializare = 4,
-                            id_materie = 4,
-                            id_student = 4,
-                            nota = 5.6500000000000004
-                        },
-                        new
-                        {
-                            id_Specializare = 5,
-                            id_materie = 5,
-                            id_student = 5,
-                            nota = 4.7999999999999998
                         });
                 });
 
@@ -367,7 +305,7 @@ namespace App_Facultate.Migrations
                             id_profesor = 1,
                             grad = 0,
                             id_materie = 1,
-                            id_utilizator = 1,
+                            id_utilizator = 3,
                             salariu = 5000m
                         },
                         new
@@ -375,32 +313,8 @@ namespace App_Facultate.Migrations
                             id_profesor = 2,
                             grad = 1,
                             id_materie = 2,
-                            id_utilizator = 2,
-                            salariu = 5800m
-                        },
-                        new
-                        {
-                            id_profesor = 3,
-                            grad = 2,
-                            id_materie = 3,
-                            id_utilizator = 3,
-                            salariu = 7830m
-                        },
-                        new
-                        {
-                            id_profesor = 4,
-                            grad = 3,
-                            id_materie = 4,
                             id_utilizator = 4,
-                            salariu = 4000m
-                        },
-                        new
-                        {
-                            id_profesor = 5,
-                            grad = 0,
-                            id_materie = 5,
-                            id_utilizator = 5,
-                            salariu = 6700m
+                            salariu = 5800m
                         });
                 });
 

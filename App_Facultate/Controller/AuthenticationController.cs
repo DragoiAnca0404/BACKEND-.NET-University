@@ -17,19 +17,9 @@ namespace Authentication.Controller
             _context = context;
         }
 
-        [HttpGet("login/")]
+     /*   [HttpGet("login/")]
         public IActionResult checkLogin(String username, [FromBody] String password)
         {
-         
-
-            var userExists = _context.Utilizatori
-                .Where(s => s.username.Equals(username) && s.parola.Equals(password))
-                .Select(s => new
-            {
-                parola = s.parola,
-                username = s.prenume
-            }).Count();
-
             var userId = _context.Utilizatori
                 .Where(s => s.username.Equals(username) && s.parola.Equals(password))
                 .Select(s => new
@@ -43,12 +33,13 @@ namespace Authentication.Controller
             }
 
             var studentId = _context.Studenti
+                .Where(s => s.id_utilizator.Equals(userId.First().id_utilizator))
                 .Select(s => new
                 {
-                    id_utilizatori = s.id_utilizator
+                    id_utilizator = s.id_utilizator
                 });
 
-            if (userId == studentId)
+            if (userId.First().id_utilizator == studentId.First().id_utilizator)
             {
                 return Ok("Student");
             }
@@ -74,19 +65,10 @@ namespace Authentication.Controller
 
             if (userId == profesorId)
             {
-                //return NotFound();
-                return Ok();
+                return Ok("Profesor");
             }
 
             return NotFound();
-        }
-    /*   [HttpGet("insert/")]
-        public IActionResult insertUsers()
-        {
-            //_context.Utilizatori.Add(new Commander.Model.Utilizatori { username = "VasileIon05", nume = "Popescu", prenume = "Vasile Ion", parola = "3333267AAA*", email = "p_ion@gmail.com" });
-            //_context.Utilizatori.Add(new Commander.Model.Utilizatori { username = "MateiSolomon", nume = "Solomon", prenume = "Matei", parola = "matte777*", email = "matei_matt@yahoo.ro" });
-            _context.SaveChanges();
-            return Ok();
-        } */
+        }*/
     }
 }

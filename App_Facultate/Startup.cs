@@ -33,14 +33,6 @@ namespace App_Facultate
                 options =>
                 options.UseSqlServer("Server=DESKTOP-L0JCS3H\\MSSQLSERVER01; Database=FacultateDB; Trusted_Connection= True; MultipleActiveResultSets=True; User ID=CommanderAPI; Password=Destinul04;", x => x.MigrationsAssembly("App_Facultate")));
 
-     
-
-            /* services.AddDbContext<ApplicationDbContext>(
-     options =>
-         options.UseSqlServer(
-             Configuration.GetConnectionString("DefaultConnection"),
-             x => x.MigrationsAssembly("WebApplication1.Migrations")));*/
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

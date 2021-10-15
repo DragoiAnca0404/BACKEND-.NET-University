@@ -2,7 +2,7 @@
 
 namespace App_Facultate.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -108,7 +108,7 @@ namespace App_Facultate.Migrations
                     scutit_plata = table.Column<bool>(type: "bit", nullable: false),
                     id_specializare = table.Column<int>(type: "int", nullable: false),
                     Specializariid_Specializare = table.Column<int>(type: "int", nullable: true),
-                    id_utilizatori = table.Column<int>(type: "int", nullable: false),
+                    id_utilizator = table.Column<int>(type: "int", nullable: false),
                     Utilizatoriid_utilizator = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -134,7 +134,7 @@ namespace App_Facultate.Migrations
                 {
                     id_Specializare = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nota = table.Column<int>(type: "int", nullable: false),
+                    nota = table.Column<double>(type: "float", nullable: false),
                     id_materie = table.Column<int>(type: "int", nullable: false),
                     Materiiid_materie = table.Column<int>(type: "int", nullable: true),
                     id_student = table.Column<int>(type: "int", nullable: false),
@@ -155,6 +155,74 @@ namespace App_Facultate.Migrations
                         principalTable: "Studenti",
                         principalColumn: "id_student",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Administratori",
+                columns: new[] { "id_administrator", "Utilizatoriid_utilizator", "id_utilizator" },
+                values: new object[] { 1, null, 5 });
+
+            migrationBuilder.InsertData(
+                table: "Calificative",
+                columns: new[] { "id_Specializare", "Materiiid_materie", "Studentiid_student", "id_materie", "id_student", "nota" },
+                values: new object[,]
+                {
+                    { 2, null, null, 2, 2, 9.0500000000000007 },
+                    { 1, null, null, 1, 1, 10.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Materii",
+                columns: new[] { "id_materie", "denumire_materie" },
+                values: new object[,]
+                {
+                    { 5, "Psihologie sociala" },
+                    { 4, "Tehnici promotionale" },
+                    { 3, "Bazele administratiei publice" },
+                    { 2, "Psihologie politica" },
+                    { 1, "Statistica economica" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Profesori",
+                columns: new[] { "id_profesor", "Materiiid_materie", "Utilizatoriid_utilizator", "grad", "id_materie", "id_utilizator", "salariu" },
+                values: new object[,]
+                {
+                    { 1, null, null, 0, 1, 3, 5000m },
+                    { 2, null, null, 1, 2, 4, 5800m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Specializari",
+                columns: new[] { "id_Specializare", "denumire_specializare" },
+                values: new object[,]
+                {
+                    { 4, "Marketing" },
+                    { 1, "Finante" },
+                    { 2, "Stiinte politice" },
+                    { 3, "Drept administrativ" },
+                    { 5, "Asistenta sociala" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Studenti",
+                columns: new[] { "id_student", "Specializariid_Specializare", "Utilizatoriid_utilizator", "id_specializare", "id_utilizator", "scutit_plata" },
+                values: new object[,]
+                {
+                    { 2, null, null, 2, 2, false },
+                    { 1, null, null, 1, 1, true }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Utilizatori",
+                columns: new[] { "id_utilizator", "email", "nume", "parola", "prenume", "username" },
+                values: new object[,]
+                {
+                    { 4, "flo_andrei@yahoo.com", "Florescu", "moviehsjjs", "Andrei", "FlorescuAndrei" },
+                    { 3, "george_07@gmail.com", "Ciobanu", "dogiuaaj922", "George", "George0647" },
+                    { 2, "ana_maria@yahoo.com", "Ion", "ana827272", "Ana-Maria", "AnaMaria" },
+                    { 1, "matei_matt@yahoo.ro", "Solomon", "matte777*", "Matei", "MateiSolomon" },
+                    { 5, "anastasia_sia@yahoo.ro", "Soare", "sia73737*", "Anastasia", "AnastasiaS" }
                 });
 
             migrationBuilder.CreateIndex(
