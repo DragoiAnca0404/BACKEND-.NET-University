@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Commander.Models
+namespace Models
 {
     public class Materii
     {

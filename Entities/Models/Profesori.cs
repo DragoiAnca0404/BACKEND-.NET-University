@@ -1,8 +1,8 @@
-using Commander.Model;
+using Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Commander.Models
+namespace Models
 {
     public enum grad
     {

@@ -1,8 +1,8 @@
-using Commander.Model;
+using Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Commander.Models
+namespace Models
 {
     public class Calificative
     {
@@ -11,7 +11,7 @@ namespace Commander.Models
         public int id_Specializare { get; set; }
 
         [Range(1, 10)]
-        public int nota { get; set; }
+        public double nota { get; set; }
 
         public int id_materie { get; set; }
         public virtual Materii Materii { get; set; }

@@ -2,44 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>560b301d-b1ea-4356-adee-1bc56c0c0e6e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\**" />
-    <Content Remove="Migrations\**" />
-    <EmbeddedResource Remove="Migrations\**" />
-    <None Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Migrations\20210901122907_Facultate.cs" />
-    <Compile Include="Migrations\20210901122907_Facultate.Designer.cs" />
-    <Compile Include="Migrations\20210902080452_InitialCreated.cs" />
-    <Compile Include="Migrations\20210902080452_InitialCreated.Designer.cs" />
-    <Compile Include="Migrations\20210902081543_Add Foreign Key.cs" />
-    <Compile Include="Migrations\20210902081543_Add Foreign Key.Designer.cs" />
-    <Compile Include="Migrations\20210902101504_Add Schema Database.cs" />
-    <Compile Include="Migrations\20210902101504_Add Schema Database.Designer.cs" />
-    <Compile Include="Migrations\20210902101932_Add Schema Database2.cs" />
-    <Compile Include="Migrations\20210902101932_Add Schema Database2.Designer.cs" />
-    <Compile Include="Migrations\20210902103207_Add Schema Database3.cs" />
-    <Compile Include="Migrations\20210902103207_Add Schema Database3.Designer.cs" />
-    <Compile Include="Migrations\20210906111316_Generate.cs" />
-    <Compile Include="Migrations\20210906111316_Generate.Designer.cs" />
-    <Compile Include="Migrations\20210906112553_Generate2.cs" />
-    <Compile Include="Migrations\20210906112553_Generate2.Designer.cs" />
-    <Compile Include="Migrations\SpecializariContextModelSnapshot.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
 </Project>
