@@ -31,18 +31,23 @@ namespace App_Facultate
 
             services.AddDbContext<FacultateContext>(
                 options =>
-                options.UseSqlServer("Server=DESKTOP-L0JCS3H\\MSSQLSERVER01; Database=FacultateDB; Trusted_Connection= True; MultipleActiveResultSets=True; User ID=CommanderAPI; Password=Destinul04;", x => x.MigrationsAssembly("App_Facultate")));
+                options.UseSqlServer("Server=DESKTOP-73GSI3U\\SQLEXPRESS; Database=FacultateDB; Trusted_Connection= True; MultipleActiveResultSets=True; User ID=CommanderAPI; Password=Destinul04;", x => x.MigrationsAssembly("App_Facultate")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "App_Facultate", Version = "v1" });
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(builder => 
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
