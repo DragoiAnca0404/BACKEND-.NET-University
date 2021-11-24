@@ -813,19 +813,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ciure.DESKTOP-73GSI3U\\.nuget\\packages\\": {}
+    "C:\\Users\\anca_\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\Entities\\Entities.csproj",
+      "projectUniqueName": "E:\\Facultate_proiect\\Backend-.Net-University\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\Entities\\Entities.csproj",
-      "packagesPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ciure.DESKTOP-73GSI3U\\Desktop\\Backend-.Net-University\\Entities\\obj\\",
+      "projectPath": "E:\\Facultate_proiect\\Backend-.Net-University\\Entities\\Entities.csproj",
+      "packagesPath": "C:\\Users\\anca_\\.nuget\\packages\\",
+      "outputPath": "E:\\Facultate_proiect\\Backend-.Net-University\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ciure.DESKTOP-73GSI3U\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anca_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -879,7 +879,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
