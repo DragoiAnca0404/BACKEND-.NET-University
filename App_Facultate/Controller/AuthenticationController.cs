@@ -7,9 +7,11 @@ using Microsoft.IdentityModel.Tokens;
 using Model;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 
 namespace Authentication.Controller
 {
@@ -26,9 +28,10 @@ namespace Authentication.Controller
             _config = config;
         }
 
-       [HttpGet("login/")]
-        public IActionResult checkLogin(String username, [FromBody] String password)
+       [HttpPost("login/")]
+        public IActionResult checkLogin(string username, [FromBody]JsonElement passwordJson)
         {
+            string password = passwordJson.GetProperty("password").GetString();
             var user = _context.Utilizatori.Where(s => s.username.Equals(username) && s.parola.Equals(password)).ToList();
 
             if (user.Count().Equals(0))
