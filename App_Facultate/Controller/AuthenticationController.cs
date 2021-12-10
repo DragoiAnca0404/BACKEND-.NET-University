@@ -64,7 +64,7 @@ namespace Authentication.Controller
                     id_utilizator = s.id_utilizator
                 });
 
-            if (student.Count().Equals(1))
+            if (student.Count().Equals(1) || admin.Count().Equals(1) || profesor.Count().Equals(1)) 
             {
                 var claims = new[]
                  {
@@ -98,24 +98,18 @@ namespace Authentication.Controller
                     return Ok(response);
                 }
 
-            }
-
-            if (profesor.Count().Equals(1))
-            {
                 if (user.First().id_utilizator.Equals(profesor.First().id_utilizator))
                 {
                     response.Rol = "Profesor";
                     return Ok(response);
                 }
-            }
 
-            if (admin.Count().Equals(1))
-            {
                 if (user.First().id_utilizator.Equals(admin.First().id_utilizator))
                 {
                     response.Rol = "Administrator";
                     return Ok(response);
                 }
+
             }
 
             return NotFound();
