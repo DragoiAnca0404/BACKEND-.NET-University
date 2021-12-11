@@ -34,6 +34,7 @@ namespace Authentication.Controller
             string password = passwordJson.GetProperty("password").GetString();
             var user = _context.Utilizatori.Where(s => s.username.Equals(username) && s.parola.Equals(password)).ToList();
 
+
             if (user.Count().Equals(0))
             {
                 return NotFound("No such user!");
@@ -42,6 +43,7 @@ namespace Authentication.Controller
             var response = new LoginResponse();
             response.Nume = user.First().nume;
             response.Prenume = user.First().prenume;
+
 
             var student = _context.Studenti
                 .Where(s => s.id_utilizator.Equals(user.First().id_utilizator))
@@ -64,7 +66,20 @@ namespace Authentication.Controller
                     id_utilizator = s.id_utilizator
                 });
 
-            if (student.Count().Equals(1) || admin.Count().Equals(1) || profesor.Count().Equals(1)) 
+            if (user.First().id_utilizator.Equals(profesor.First().id_utilizator))
+            {
+                response.Rol = "Profesor";
+            }
+            else if (user.First().id_utilizator.Equals(student.First().id_utilizator))
+            {
+                response.Rol = "Student";
+            }
+            else if (user.First().id_utilizator.Equals(admin.First().id_utilizator))
+                {
+                    response.Rol = "Administrator";
+                }
+
+           if (student.Count().Equals(1) || admin.Count().Equals(1) || profesor.Count().Equals(1)) 
             {
                 var claims = new[]
                  {
@@ -76,6 +91,7 @@ namespace Authentication.Controller
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("xecretKeywqejane"));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+
                 var token = new JwtSecurityToken(
                     issuer: _config["Tokens:Issuer"],
                     audience: _config["Tokens:Audience"],
@@ -83,32 +99,17 @@ namespace Authentication.Controller
                     expires: DateTime.UtcNow.AddMinutes(12),
                     signingCredentials: creds
                     );
-
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
-                }); 
+                    expiration = token.ValidTo,
+                    Nume = response.Nume,
+                    Prenume = response.Prenume,
+                    Rol = response.Rol
+                });
 
                 return BadRequest("Failed to generate Token");
-  
-                if (user.First().id_utilizator.Equals(student.First().id_utilizator))
-                {
-                    response.Rol = "Student";
-                    return Ok(response);
-                }
-
-                if (user.First().id_utilizator.Equals(profesor.First().id_utilizator))
-                {
-                    response.Rol = "Profesor";
-                    return Ok(response);
-                }
-
-                if (user.First().id_utilizator.Equals(admin.First().id_utilizator))
-                {
-                    response.Rol = "Administrator";
-                    return Ok(response);
-                }
+ 
 
             }
 
