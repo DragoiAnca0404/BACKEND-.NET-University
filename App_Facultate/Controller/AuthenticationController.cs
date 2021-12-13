@@ -66,20 +66,22 @@ namespace Authentication.Controller
                     id_utilizator = s.id_utilizator
                 });
 
-            if (user.First().id_utilizator.Equals(profesor.First().id_utilizator))
-            {
-                response.Rol = "Profesor";
-            }
-            else if (user.First().id_utilizator.Equals(student.First().id_utilizator))
+
+            if ((student.FirstOrDefault() !=null) && user.FirstOrDefault().id_utilizator.Equals(student.FirstOrDefault().id_utilizator))
             {
                 response.Rol = "Student";
             }
-            else if (user.First().id_utilizator.Equals(admin.First().id_utilizator))
-                {
-                    response.Rol = "Administrator";
-                }
+            else if (user.First().id_utilizator.Equals(profesor.FirstOrDefault().id_utilizator))
+            {
+                response.Rol = "Profesor";
 
-           if (student.Count().Equals(1) || admin.Count().Equals(1) || profesor.Count().Equals(1)) 
+            }
+            else if (user.First().id_utilizator.Equals(admin.FirstOrDefault().id_utilizator))
+            {
+                response.Rol = "Administrator";
+            }
+
+            if (student.Count().Equals(1) || admin.Count().Equals(1) || profesor.Count().Equals(1)) 
             {
                 var claims = new[]
                  {
@@ -108,8 +110,10 @@ namespace Authentication.Controller
                     Rol = response.Rol
                 });
 
+#pragma warning disable CS0162 // Unreachable code detected
                 return BadRequest("Failed to generate Token");
- 
+#pragma warning restore CS0162 // Unreachable code detected
+
 
             }
 
