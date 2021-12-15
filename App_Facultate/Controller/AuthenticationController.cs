@@ -37,7 +37,8 @@ namespace Authentication.Controller
 
             if (user.Count().Equals(0))
             {
-                return NotFound("No such user!");
+                return BadRequest(new { message = "Login or password is incorrect" });
+
             }
 
             var response = new LoginResponse();
@@ -105,9 +106,9 @@ namespace Authentication.Controller
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo,
-                    Nume = response.Nume,
-                    Prenume = response.Prenume,
-                    Rol = response.Rol
+                    Name = response.Nume,
+                    Surname = response.Prenume,
+                    Role = response.Rol
                 });
 
 #pragma warning disable CS0162 // Unreachable code detected
