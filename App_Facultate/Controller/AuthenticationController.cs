@@ -72,12 +72,12 @@ namespace Authentication.Controller
             {
                 response.Rol = "Student";
             }
-            else if (user.First().id_utilizator.Equals(profesor.FirstOrDefault().id_utilizator))
+            else if ((profesor.FirstOrDefault() != null) && user.First().id_utilizator.Equals(profesor.FirstOrDefault().id_utilizator))
             {
                 response.Rol = "Profesor";
 
             }
-            else if (user.First().id_utilizator.Equals(admin.FirstOrDefault().id_utilizator))
+            else if ((admin.FirstOrDefault() != null) && user.First().id_utilizator.Equals(admin.FirstOrDefault().id_utilizator))
             {
                 response.Rol = "Administrator";
             }
