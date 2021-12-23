@@ -114,8 +114,6 @@ namespace Authentication.Controller
 #pragma warning disable CS0162 // Unreachable code detected
                 return BadRequest("Failed to generate Token");
 #pragma warning restore CS0162 // Unreachable code detected
-
-
             }
 
             return NotFound();
