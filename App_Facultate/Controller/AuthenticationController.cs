@@ -110,7 +110,7 @@ namespace Authentication.Controller
                     Name = response.Nume,
                     Surname = response.Prenume,
                     Role = response.Rol,
-                   Username = response.Username
+                    Username = response.Username
                 });
 
 #pragma warning disable CS0162 // Unreachable code detected
