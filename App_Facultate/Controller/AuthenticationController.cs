@@ -44,6 +44,7 @@ namespace Authentication.Controller
             var response = new LoginResponse();
             response.Nume = user.First().nume;
             response.Prenume = user.First().prenume;
+            response.Username = user.First().username;
 
 
             var student = _context.Studenti
@@ -108,7 +109,8 @@ namespace Authentication.Controller
                     expiration = token.ValidTo,
                     Name = response.Nume,
                     Surname = response.Prenume,
-                    Role = response.Rol
+                    Role = response.Rol,
+                   Username = response.Username
                 });
 
 #pragma warning disable CS0162 // Unreachable code detected
