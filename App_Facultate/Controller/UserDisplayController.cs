@@ -34,7 +34,7 @@ namespace App_Facultate.Controller
                             s => s.id_utilizator,
                             (u, s) => new
                             { s, u }).
-                Select(s => new {nume = s.u.nume, prenume = s.u.prenume, email = s.u.email }).ToList();
+                Select(s => new {name = s.u.nume, surname = s.u.prenume, email = s.u.email }).ToList();
 
 
             var student = _context.Utilizatori.Where(s => s.username.Equals(username))
@@ -44,7 +44,7 @@ namespace App_Facultate.Controller
                             (u, s) => new
                             {s, u})
                             .Join(_context.Specializari, j =>j.s.id_specializare, i=>i.id_Specializare, (j,i)=>new { j,i})
-                            .Select(x => new { plata = x.j.s.scutit_plata, nume = x.j.u.nume, prenume =x.j.u.prenume, email =x.j.u.email , specializare = x.i.denumire_specializare } ).ToList();
+                            .Select(x => new { pay = x.j.s.scutit_plata, name = x.j.u.nume, surname =x.j.u.prenume, email =x.j.u.email , specializare = x.i.denumire_specializare } ).ToList();
 
             var teacher = _context.Utilizatori
                 .Where(s => s.username.Equals(username))
@@ -53,19 +53,19 @@ namespace App_Facultate.Controller
                 s => s.id_utilizator,
                 (u, s) => new { s, u })
                 .Join(_context.Materii, i => i.s.id_materie, j => j.id_materie, (i, j) => new { j, i })
-                .Select(x => new { denumire_materie = x.j.denumire_materie, grad = x.i.s.grad, nume = x.i.u.nume, prenume = x.i.u.prenume, email = x.i.u.email }).ToList();
+                .Select(x => new { course = x.j.denumire_materie, degree = x.i.s.grad, name = x.i.u.nume, surname = x.i.u.prenume, email = x.i.u.email }).ToList();
 
             if (admin.Count().Equals(1))
             {
-                return Ok(new{ admin }); 
+                return Ok(admin);
             }
             else if (student.Count().Equals(1))
-            { 
-                return Ok(new { student });
+            {
+                return Ok(student);
             }
             else if (teacher.Count().Equals(1))
             {
-                return Ok(new { teacher }); 
+                return Ok(teacher);
             }
             return NotFound();
 
