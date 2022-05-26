@@ -26,12 +26,19 @@ namespace App_Facultate.Controller
         public async Task<ActionResult<IEnumerable<Utilizatori>>> GetUtilizatori(string username)
         {
 
-            
-
-            var admin = _context.Utilizatori.Select(s => new {nume = s.nume, prenume = s.prenume, email = s.email });
+            var username_new = _context.Utilizatori.Where(s => s.username.Equals(username)).ToList();
 
 
-            var student = _context.Utilizatori.Join(_context.Studenti,
+            var admin = _context.Utilizatori.Where(s => s.username.Equals(username)).Join(_context.Administratori,
+                            u => u.id_utilizator,
+                            s => s.id_utilizator,
+                            (u, s) => new
+                            { s, u }).
+                Select(s => new {nume = s.u.nume, prenume = s.u.prenume, email = s.u.email }).ToList();
+
+
+            var student = _context.Utilizatori.Where(s => s.username.Equals(username))
+                .Join(_context.Studenti,
                             u => u.id_utilizator,
                             s => s.id_utilizator,
                             (u, s) => new
@@ -39,14 +46,29 @@ namespace App_Facultate.Controller
                             .Join(_context.Specializari, j =>j.s.id_specializare, i=>i.id_Specializare, (j,i)=>new { j,i})
                             .Select(x => new { plata = x.j.s.scutit_plata, nume = x.j.u.nume, prenume =x.j.u.prenume, email =x.j.u.email , specializare = x.i.denumire_specializare } ).ToList();
 
-            var teacher = _context.Utilizatori.Join(_context.Profesori,
+            var teacher = _context.Utilizatori
+                .Where(s => s.username.Equals(username))
+                .Join(_context.Profesori,
                 u => u.id_utilizator,
                 s => s.id_utilizator,
                 (u, s) => new { s, u })
                 .Join(_context.Materii, i => i.s.id_materie, j => j.id_materie, (i, j) => new { j, i })
                 .Select(x => new { denumire_materie = x.j.denumire_materie, grad = x.i.s.grad, nume = x.i.u.nume, prenume = x.i.u.prenume, email = x.i.u.email }).ToList();
 
-            return null;
+            if (admin.Count().Equals(1))
+            {
+                return Ok(new{ admin }); 
+            }
+            else if (student.Count().Equals(1))
+            { 
+                return Ok(new { student });
+            }
+            else if (teacher.Count().Equals(1))
+            {
+                return Ok(new { teacher }); 
+            }
+            return NotFound();
+
         }
     }
 }
