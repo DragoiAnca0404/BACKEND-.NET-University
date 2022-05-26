@@ -26,7 +26,7 @@ namespace App_Facultate.Controller
         public async Task<ActionResult<IEnumerable<Utilizatori>>> GetUtilizatori(string username)
         {
 
-            var username_new = _context.Utilizatori.Where(s => s.username.Equals(username)).ToList();
+           // var username_new = _context.Utilizatori.Where(s => s.username.Equals(username)).ToList();
 
 
             var admin = _context.Utilizatori.Where(s => s.username.Equals(username)).Join(_context.Administratori,
