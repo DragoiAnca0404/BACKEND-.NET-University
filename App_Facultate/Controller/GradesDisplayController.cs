@@ -25,7 +25,20 @@ namespace App_Facultate.Controller
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Materii>>> GetMaterii(string denumire_materie)
         {
-            return await _context.Materii.ToListAsync();
+            var grades = _context.Materii.Where(w => w.denumire_materie.Equals(denumire_materie))
+                .Join(_context.Calificative,
+                u => u.id_materie,
+                s => s.id_materie,
+                (u, s) => new
+                { s, u }).Join(_context.Studenti,
+                x => x.s.id_student,
+                y => y.id_student,
+                (x,y) => new {x,y}).Join(_context.Utilizatori,
+                a=> a.y.id_utilizator,
+                b=> b.id_utilizator,(a,b) => new {a,b}).Select(z=> new {z.a.x.s.nota, z.b.nume, z.b.prenume }).ToList();
+
+
+            return Ok(grades);
         }
 
       
