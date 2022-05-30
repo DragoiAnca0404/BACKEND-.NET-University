@@ -8,7 +8,7 @@ namespace Models
     {
         [Key]
         [Required]
-        public int id_Specializare { get; set; }
+        public int id_Calificativ { get; set; }
 
         [Range(1, 10)]
         public double nota { get; set; }

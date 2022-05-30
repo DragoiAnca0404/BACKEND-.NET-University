@@ -41,6 +41,8 @@ namespace App_Facultate.Controller
             return Ok(grades);
         }
 
-      
+
+
+
     }
 }
