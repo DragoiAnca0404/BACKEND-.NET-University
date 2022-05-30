@@ -21,6 +21,20 @@ namespace App_Facultate.Controller
             _context = context;
         }
 
+      
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Calificative>> GetCalificative(int id)
+        {
+            var inspection = await _context.Calificative.FindAsync(id);
+
+            if (inspection == null)
+            {
+                return NotFound();
+            }
+
+            return inspection;
+        }
+
         // GET: api/GradesDisplay
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Materii>>> GetMaterii(string denumire_materie)
@@ -39,6 +53,31 @@ namespace App_Facultate.Controller
 
 
             return Ok(grades);
+        }
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Materii>>> PostAddGrade(int id_materie, string denumire_materie, string nume, string prenume, Calificative grade )
+        {
+
+            // var grades = _context.Materii.Where(w => w.denumire_materie.Equals(denumire_materie));
+
+
+            //  _context.Calificative.Add(grade);
+
+
+            //  await _context.SaveChangesAsync();
+
+            // return CreatedAtAction("GetCalificative", new { id = grade.id_Calificativ }, grade);
+
+           
+                var dept = new Calificative()
+                {
+                    nota = 5,
+                };
+                _context.Entry(dept).State = EntityState.Added;
+                _context.SaveChanges();
+            
+
+            return Ok();
         }
 
 
