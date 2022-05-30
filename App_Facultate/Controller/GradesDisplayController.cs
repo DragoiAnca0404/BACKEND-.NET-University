@@ -54,30 +54,31 @@ namespace App_Facultate.Controller
 
             return Ok(grades);
         }
+
+        // POST: api/GradesDisplay
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Materii>>> PostAddGrade(int id_materie, string denumire_materie, string nume, string prenume, Calificative grade )
+        public async Task<ActionResult<IEnumerable<Materii>>> PostAddGrade(string denumire_materie, string nume, string surname, double grade )
         {
+            var id_subject = _context.Materii.Where(s => s.denumire_materie.Equals(denumire_materie)).Select(s => new { id_materie = s.id_materie }).ToList();
+            var id_student = _context.Utilizatori.Where(s => s.nume.Equals(nume) && s.prenume.Equals(surname))
+                .Join(_context.Studenti,
+                u => u.id_utilizator,
+                s => s.id_utilizator, (u, s) => new
+                { s, u }).Select(s => new { s.s.id_student}).ToList();
 
-            // var grades = _context.Materii.Where(w => w.denumire_materie.Equals(denumire_materie));
 
 
-            //  _context.Calificative.Add(grade);
 
-
-            //  await _context.SaveChangesAsync();
-
-            // return CreatedAtAction("GetCalificative", new { id = grade.id_Calificativ }, grade);
-
-           
-                var dept = new Calificative()
-                {
-                    nota = 5,
-                };
-                _context.Entry(dept).State = EntityState.Added;
+                    var add_grade = new Calificative()
+            {
+                nota = grade,
+                id_materie = id_subject[0].id_materie,
+                id_student = id_student[0].id_student
+            };
+                _context.Entry(add_grade).State = EntityState.Added;
                 _context.SaveChanges();
             
-
-            return Ok();
+            return Ok(add_grade);
         }
 
 
