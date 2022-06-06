@@ -33,12 +33,14 @@ namespace App_Facultate.Controller
         {
             int id_user;
             double grade;
+            string denumire_materie;
 
             grade = item.grade;
             id_user = item.id_user;
+            denumire_materie=item.denumire_materie;
       
 
-            // var id_subject = _context.Materii.Where(s => s.denumire_materie.Equals(denumire_materie)).Select(s => new { id_materie = s.id_materie }).FirstOrDefault();
+             var id_subject = _context.Materii.Where(s => s.denumire_materie.Equals(denumire_materie)).Select(s => new { id_materie = s.id_materie }).FirstOrDefault();
              var id_student = _context.Utilizatori.Where(s => s.id_utilizator.Equals(id_user))
                  .Join(_context.Studenti,
                  u => u.id_utilizator,
@@ -48,7 +50,7 @@ namespace App_Facultate.Controller
                  var add_grade = new Models.Calificative()
                  {
                      nota = grade,
-                    // id_materie = id_subject.id_materie,
+                     id_materie = id_subject.id_materie,
                      id_student = id_user,
                  };
                  _context.Entry(add_grade).State = EntityState.Added;
