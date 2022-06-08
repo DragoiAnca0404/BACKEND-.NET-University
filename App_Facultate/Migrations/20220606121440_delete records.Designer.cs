@@ -4,14 +4,16 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace App_Facultate.Migrations
 {
     [DbContext(typeof(FacultateContext))]
-    partial class FacultateContextModelSnapshot : ModelSnapshot
+    [Migration("20220606121440_delete records")]
+    partial class deleterecords
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,79 +334,6 @@ namespace App_Facultate.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Models.Orar", b =>
-                {
-                    b.Property<int>("id_orar")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("Materiiid_materie")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Time_end")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Time_start")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("id_materie")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ziua")
-                        .HasColumnType("int");
-
-                    b.HasKey("id_orar");
-
-                    b.HasIndex("Materiiid_materie");
-
-                    b.ToTable("Orar");
-
-                    b.HasData(
-                        new
-                        {
-                            id_orar = 1,
-                            Time_end = "09:50",
-                            Time_start = "08:00",
-                            id_materie = 1,
-                            ziua = 0
-                        },
-                        new
-                        {
-                            id_orar = 2,
-                            Time_end = "11:50",
-                            Time_start = "10:00",
-                            id_materie = 1,
-                            ziua = 0
-                        },
-                        new
-                        {
-                            id_orar = 3,
-                            Time_end = "13:50",
-                            Time_start = "12:00",
-                            id_materie = 1,
-                            ziua = 0
-                        },
-                        new
-                        {
-                            id_orar = 4,
-                            Time_end = "15:50",
-                            Time_start = "14:00",
-                            id_materie = 1,
-                            ziua = 0
-                        },
-                        new
-                        {
-                            id_orar = 5,
-                            Time_end = "17:50",
-                            Time_start = "16:00",
-                            id_materie = 1,
-                            ziua = 0
-                        });
-                });
-
             modelBuilder.Entity("Models.Profesori", b =>
                 {
                     b.Property<int>("id_profesor")
@@ -547,15 +476,6 @@ namespace App_Facultate.Migrations
                         .HasForeignKey("Studentiid_student");
 
                     b.Navigation("Studenti");
-                });
-
-            modelBuilder.Entity("Models.Orar", b =>
-                {
-                    b.HasOne("Models.Materii", "Materii")
-                        .WithMany()
-                        .HasForeignKey("Materiiid_materie");
-
-                    b.Navigation("Materii");
                 });
 
             modelBuilder.Entity("Models.Profesori", b =>

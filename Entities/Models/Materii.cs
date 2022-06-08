@@ -1,3 +1,4 @@
+using Model;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -11,6 +12,9 @@ namespace Models
         [Required]
         [MaxLength(250)]
         public string denumire_materie { get; set; }
+
+        public int id_student { get; set; }
+        public virtual Studenti Studenti { get; set; }
 
     }
 }
