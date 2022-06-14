@@ -43,6 +43,10 @@ namespace Data
             modelBuilder.Entity<Materii>().HasData(new Materii { id_materie = 3, denumire_materie = "Bazele administratiei publice", id_student = 3 });
             modelBuilder.Entity<Materii>().HasData(new Materii { id_materie = 4, denumire_materie = "Tehnici promotionale", id_student = 3 });
             modelBuilder.Entity<Materii>().HasData(new Materii { id_materie = 5, denumire_materie = "Psihologie sociala",  id_student = 4 });
+            modelBuilder.Entity<Materii>().HasData(new Materii { id_materie = 6, denumire_materie = "Psihologie politica", id_student = 3 });
+            modelBuilder.Entity<Materii>().HasData(new Materii { id_materie = 7, denumire_materie = "Psihologie politica", id_student = 4 });
+
+
 
             modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 1, nota = 10, id_materie = 1, id_student = 1 });
             modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 2, nota = 9.05, id_materie = 2, id_student = 2 });

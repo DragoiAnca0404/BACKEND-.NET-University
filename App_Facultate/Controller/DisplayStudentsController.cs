@@ -34,7 +34,7 @@ namespace App_Facultate.Controller
                            y => y.id_student,
                             (x, y) => new { x, y }).Join(_context.Utilizatori,
                            a => a.y.id_utilizator,
-                           b => b.id_utilizator, (a, b) => new { a, b }).Select(z => new {  name = z.b.nume, surname = z.b.prenume, id_user = z.a.y.id_utilizator }).ToList();
+                           b => b.id_utilizator, (a, b) => new { a, b }).Select(z => new {  name = z.b.nume, surname = z.b.prenume, id_user = z.a.y.id_utilizator, id_student = z.a.x.id_student }).ToList();
 
             return Ok(students);
         }
