@@ -23,7 +23,6 @@ namespace Data
             modelBuilder.Entity<Utilizatori>().HasData(new Utilizatori { id_utilizator = 7, username = "PopAna", nume = "Pop", prenume = "Ana", parola = "pop1112", email = "pop_ana1999@yahoo.com" });
 
 
-
             modelBuilder.Entity<Specializari>().HasData(new Specializari { id_Specializare = 1, denumire_specializare = "Finante" });
             modelBuilder.Entity<Specializari>().HasData(new Specializari { id_Specializare = 2, denumire_specializare = "Stiinte politice" });
             modelBuilder.Entity<Specializari>().HasData(new Specializari { id_Specializare = 3, denumire_specializare = "Drept administrativ" });
