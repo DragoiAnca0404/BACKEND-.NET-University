@@ -21,8 +21,6 @@ namespace App_Facultate.Controller
             _context = context;
         }
 
-        // PUT: api/Calificatives/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCalificative(int id, Calificative calificative)
         {
