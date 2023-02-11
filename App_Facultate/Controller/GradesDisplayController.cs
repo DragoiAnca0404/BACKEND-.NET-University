@@ -23,7 +23,7 @@ namespace App_Facultate.Controller
 
     
         // GET: api/GradesDisplay
-        [HttpGet]
+        [HttpGet("ViewGradesTeacher")]
         public async Task<ActionResult<IEnumerable<Materii>>> GetMaterii(string denumire_materie)
         {
             var grades = _context.Materii.Where(w => w.denumire_materie.Equals(denumire_materie))
@@ -40,6 +40,19 @@ namespace App_Facultate.Controller
 
 
              return Ok(grades);
+        }
+
+        // GET: api/GradesDisplay
+        [HttpGet("ViewGradesStudent")]
+        public async Task<ActionResult<IEnumerable<Materii>>> GetCalificative(int id_student)
+        {
+            var grades_student = _context.Calificative.Where(w => w.id_student.Equals(id_student))
+                .Join(_context.Materii,
+                u => u.id_materie,
+                s => s.id_materie,
+                (u, s) => new { u, s }).Select(z => new { denumire_materie = z.s.denumire_materie, grade = z.u.nota });
+
+            return Ok(grades_student);
         }
     }
 }
