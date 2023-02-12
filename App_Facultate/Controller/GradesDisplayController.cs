@@ -54,5 +54,21 @@ namespace App_Facultate.Controller
 
             return Ok(grades_student);
         }
+
+        [HttpGet("ViewSubjects")]
+        public async Task<ActionResult<IEnumerable<Materii>>> GetAllSujects(string username)
+        {
+            var id_student = _context.Utilizatori.Where(w => w.username.Equals(username))
+    .Join(_context.Studenti,
+    a => a.id_utilizator,
+    b => b.id_utilizator,
+    (a, b) => new { a, b })
+    .Select(e => new { id_student = e.b.id_student }).ToList();
+
+            var subjects = _context.Materii.Where(w=> w.id_student.Equals(id_student.First().id_student)).
+                Select(z => new { denumire_materie = z.denumire_materie });
+
+            return Ok(subjects);
+        }
     }
 }
