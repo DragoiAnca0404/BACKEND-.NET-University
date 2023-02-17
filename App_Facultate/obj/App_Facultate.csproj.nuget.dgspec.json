@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj": {}
+    "C:\\Users\\AncaDragoi\\Downloads\\HomeworkSpecflow\\Seleniumwithspecflow_homework_part_2\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj": {}
   },
   "projects": {
-    "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj": {
+    "C:\\Users\\AncaDragoi\\Downloads\\HomeworkSpecflow\\Seleniumwithspecflow_homework_part_2\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj",
+        "projectUniqueName": "C:\\Users\\AncaDragoi\\Downloads\\HomeworkSpecflow\\Seleniumwithspecflow_homework_part_2\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj",
         "projectName": "App_Facultate",
-        "projectPath": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\App_Facultate.csproj",
-        "packagesPath": "C:\\Users\\anca_\\.nuget\\packages\\",
-        "outputPath": "E:\\Facultate_proiect\\App_Facultate\\App_Facultate\\obj\\",
+        "projectPath": "C:\\Users\\AncaDragoi\\Downloads\\HomeworkSpecflow\\Seleniumwithspecflow_homework_part_2\\Backend-.Net-University\\App_Facultate\\App_Facultate.csproj",
+        "packagesPath": "C:\\Users\\AncaDragoi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AncaDragoi\\Downloads\\HomeworkSpecflow\\Seleniumwithspecflow_homework_part_2\\Backend-.Net-University\\App_Facultate\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\anca_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AncaDragoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,7 +69,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
