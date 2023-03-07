@@ -70,5 +70,17 @@ namespace App_Facultate.Controller
 
             return Ok(subjects);
         }
+
+        [HttpGet("ViewGradesSubject")]
+        public async Task<ActionResult<IEnumerable<Materii>>> GetGradesSubject(string denumire_materie, int id_student)
+        {
+            var id_subject = _context.Materii.Where(w => w.denumire_materie.Equals(denumire_materie))
+                .Select(s=> new { id_materie = s.id_materie}).ToList();
+
+            var grades_subject_student = _context.Calificative.Where(w => w.id_student.Equals(id_student) && w.id_materie.Equals(id_subject.First().id_materie))
+                .Select(s=> new {id_calificativ = s.id_Calificativ, nota = s.nota});
+
+            return Ok(grades_subject_student);
+        }
     }
 }
