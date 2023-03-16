@@ -34,10 +34,12 @@ namespace App_Facultate.Controller
             int id_user;
             double grade;
             string denumire_materie;
+            string data_nota;
 
             grade = item.grade;
             id_user = item.id_user;
             denumire_materie=item.denumire_materie;
+            data_nota = item.data_nota;
       
 
              var id_subject = _context.Materii.Where(s => s.denumire_materie.Equals(denumire_materie)).Select(s => new { id_materie = s.id_materie }).FirstOrDefault();
@@ -52,6 +54,7 @@ namespace App_Facultate.Controller
                      nota = grade,
                      id_materie = id_subject.id_materie,
                      id_student = id_user,
+                     CurrentDateGrade= data_nota,
                  };
                  _context.Entry(add_grade).State = EntityState.Added;
                  _context.SaveChanges();

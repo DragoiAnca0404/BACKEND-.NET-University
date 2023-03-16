@@ -1,4 +1,5 @@
 using Model;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,10 +14,17 @@ namespace Models
         [Range(1, 10)]
         public double nota { get; set; }
 
+
+        [Required]
+        [MaxLength(250)]
+        public String CurrentDateGrade { get; set; }
+
         public int id_materie { get; set; }
         public virtual Materii Materii { get; set; }
 
         public int id_student { get; set; }
         public virtual Studenti Studenti { get; set; }
+
+
     }
 }

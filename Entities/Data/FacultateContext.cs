@@ -47,11 +47,11 @@ namespace Data
 
 
 
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 1, nota = 10, id_materie = 1, id_student = 1 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 2, nota = 9.05, id_materie = 2, id_student = 2 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 3, nota = 8.55, id_materie = 2, id_student = 3 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 4, nota = 10, id_materie = 1, id_student = 3 });
-            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 5, nota = 5, id_materie = 2, id_student = 4 });
+            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 1, nota = 10, CurrentDateGrade= "10-12-2023", id_materie = 1, id_student = 1 });
+            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 2, nota = 9.05, CurrentDateGrade = "10-12-2023", id_materie = 2, id_student = 2 });
+            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 3, nota = 8.55, CurrentDateGrade = "10-12-2023", id_materie = 2, id_student = 3 });
+            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 4, nota = 10, CurrentDateGrade = "10-12-2023", id_materie = 1, id_student = 3 });
+            modelBuilder.Entity<Calificative>().HasData(new Calificative { id_Calificativ = 5, nota = 5, CurrentDateGrade = "10-12-2023", id_materie = 2, id_student = 4 });
 
             modelBuilder.Entity<Administratori>().HasData(new Administratori { id_administrator=1, id_utilizator=5 });
 
