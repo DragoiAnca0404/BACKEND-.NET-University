@@ -16,5 +16,7 @@ namespace Models
         public int id_student { get; set; }
         public virtual Studenti Studenti { get; set; }
 
+ 
+
     }
 }

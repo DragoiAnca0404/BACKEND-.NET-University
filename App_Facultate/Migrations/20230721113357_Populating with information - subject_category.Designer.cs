@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App_Facultate.Migrations
 {
     [DbContext(typeof(FacultateContext))]
-    [Migration("20220606133349_edit orar")]
-    partial class editorar
+    [Migration("20230721113357_Populating with information - subject_category")]
+    partial class Populatingwithinformationsubject_category
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,6 +105,13 @@ namespace App_Facultate.Migrations
                             id_student = 4,
                             id_specializare = 4,
                             id_utilizator = 7,
+                            scutit_plata = true
+                        },
+                        new
+                        {
+                            id_student = 5,
+                            id_specializare = 6,
+                            id_utilizator = 8,
                             scutit_plata = true
                         });
                 });
@@ -206,6 +213,15 @@ namespace App_Facultate.Migrations
                             parola = "pop1112",
                             prenume = "Ana",
                             username = "PopAna"
+                        },
+                        new
+                        {
+                            id_utilizator = 8,
+                            email = "toma_mihai@yahoo.com",
+                            nume = "Toma",
+                            parola = "tom1112$",
+                            prenume = "Mihai",
+                            username = "TomaMihai"
                         });
                 });
 
@@ -215,6 +231,11 @@ namespace App_Facultate.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CurrentDateGrade")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<int?>("Materiiid_materie")
                         .HasColumnType("int");
@@ -243,6 +264,7 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_Calificativ = 1,
+                            CurrentDateGrade = "10-12-2023",
                             id_materie = 1,
                             id_student = 1,
                             nota = 10.0
@@ -250,6 +272,7 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_Calificativ = 2,
+                            CurrentDateGrade = "10-12-2023",
                             id_materie = 2,
                             id_student = 2,
                             nota = 9.0500000000000007
@@ -257,6 +280,7 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_Calificativ = 3,
+                            CurrentDateGrade = "10-12-2023",
                             id_materie = 2,
                             id_student = 3,
                             nota = 8.5500000000000007
@@ -264,6 +288,7 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_Calificativ = 4,
+                            CurrentDateGrade = "10-12-2023",
                             id_materie = 1,
                             id_student = 3,
                             nota = 10.0
@@ -271,10 +296,139 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_Calificativ = 5,
+                            CurrentDateGrade = "10-12-2023",
                             id_materie = 2,
                             id_student = 4,
                             nota = 5.0
+                        },
+                        new
+                        {
+                            id_Calificativ = 6,
+                            CurrentDateGrade = "8-12-2023",
+                            id_materie = 9,
+                            id_student = 5,
+                            nota = 9.8000000000000007
+                        },
+                        new
+                        {
+                            id_Calificativ = 7,
+                            CurrentDateGrade = "10-10-2023",
+                            id_materie = 9,
+                            id_student = 5,
+                            nota = 7.0
+                        },
+                        new
+                        {
+                            id_Calificativ = 8,
+                            CurrentDateGrade = "17-07-2023",
+                            id_materie = 9,
+                            id_student = 5,
+                            nota = 6.5
+                        },
+                        new
+                        {
+                            id_Calificativ = 9,
+                            CurrentDateGrade = "14-06-2023",
+                            id_materie = 10,
+                            id_student = 5,
+                            nota = 8.5
+                        },
+                        new
+                        {
+                            id_Calificativ = 10,
+                            CurrentDateGrade = "20-06-2023",
+                            id_materie = 10,
+                            id_student = 5,
+                            nota = 5.0999999999999996
+                        },
+                        new
+                        {
+                            id_Calificativ = 11,
+                            CurrentDateGrade = "30-04-2023",
+                            id_materie = 11,
+                            id_student = 5,
+                            nota = 9.5
+                        },
+                        new
+                        {
+                            id_Calificativ = 12,
+                            CurrentDateGrade = "15-05-2023",
+                            id_materie = 11,
+                            id_student = 5,
+                            nota = 7.7999999999999998
+                        },
+                        new
+                        {
+                            id_Calificativ = 13,
+                            CurrentDateGrade = "04-04-2023",
+                            id_materie = 11,
+                            id_student = 5,
+                            nota = 4.7999999999999998
                         });
+                });
+
+            modelBuilder.Entity("Models.Category_Jobs", b =>
+                {
+                    b.Property<int>("id_category_job")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("denumire_categorie_job")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("id_category_job");
+
+                    b.ToTable("Category_Jobs");
+
+                    b.HasData(
+                        new
+                        {
+                            id_category_job = 4,
+                            denumire_categorie_job = "Data Analyst"
+                        },
+                        new
+                        {
+                            id_category_job = 3,
+                            denumire_categorie_job = "Frontend DEVELOPER"
+                        },
+                        new
+                        {
+                            id_category_job = 2,
+                            denumire_categorie_job = "Backend DEVELOPER"
+                        },
+                        new
+                        {
+                            id_category_job = 1,
+                            denumire_categorie_job = "Software Development"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Jobs", b =>
+                {
+                    b.Property<int>("id_job")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Category_Jobsid_category_job")
+                        .HasColumnType("int");
+
+                    b.Property<string>("denumire_job")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("id_category_job")
+                        .HasColumnType("int");
+
+                    b.HasKey("id_job");
+
+                    b.HasIndex("Category_Jobsid_category_job");
+
+                    b.ToTable("Jobs");
                 });
 
             modelBuilder.Entity("Models.Materii", b =>
@@ -331,6 +485,42 @@ namespace App_Facultate.Migrations
                             id_materie = 5,
                             denumire_materie = "Psihologie sociala",
                             id_student = 4
+                        },
+                        new
+                        {
+                            id_materie = 6,
+                            denumire_materie = "Psihologie politica",
+                            id_student = 3
+                        },
+                        new
+                        {
+                            id_materie = 7,
+                            denumire_materie = "Psihologie politica",
+                            id_student = 4
+                        },
+                        new
+                        {
+                            id_materie = 8,
+                            denumire_materie = "Psihologie politica",
+                            id_student = 1
+                        },
+                        new
+                        {
+                            id_materie = 9,
+                            denumire_materie = "Sisteme de gestiune a bazelor de date",
+                            id_student = 5
+                        },
+                        new
+                        {
+                            id_materie = 10,
+                            denumire_materie = "Dezvoltarea aplicatiilor Web",
+                            id_student = 5
+                        },
+                        new
+                        {
+                            id_materie = 11,
+                            denumire_materie = "Programare orientata obiect - Java",
+                            id_student = 5
                         });
                 });
 
@@ -344,11 +534,13 @@ namespace App_Facultate.Migrations
                     b.Property<int?>("Materiiid_materie")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Time_end")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Time_end")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Time_start")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Time_start")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("id_materie")
                         .HasColumnType("int");
@@ -361,6 +553,48 @@ namespace App_Facultate.Migrations
                     b.HasIndex("Materiiid_materie");
 
                     b.ToTable("Orar");
+
+                    b.HasData(
+                        new
+                        {
+                            id_orar = 1,
+                            Time_end = "09:50",
+                            Time_start = "08:00",
+                            id_materie = 1,
+                            ziua = 0
+                        },
+                        new
+                        {
+                            id_orar = 2,
+                            Time_end = "11:50",
+                            Time_start = "10:00",
+                            id_materie = 1,
+                            ziua = 0
+                        },
+                        new
+                        {
+                            id_orar = 3,
+                            Time_end = "13:50",
+                            Time_start = "12:00",
+                            id_materie = 1,
+                            ziua = 0
+                        },
+                        new
+                        {
+                            id_orar = 4,
+                            Time_end = "15:50",
+                            Time_start = "14:00",
+                            id_materie = 1,
+                            ziua = 0
+                        },
+                        new
+                        {
+                            id_orar = 5,
+                            Time_end = "17:50",
+                            Time_start = "16:00",
+                            id_materie = 1,
+                            ziua = 0
+                        });
                 });
 
             modelBuilder.Entity("Models.Profesori", b =>
@@ -412,6 +646,14 @@ namespace App_Facultate.Migrations
                             id_materie = 2,
                             id_utilizator = 4,
                             salariu = 5800m
+                        },
+                        new
+                        {
+                            id_profesor = 3,
+                            grad = 3,
+                            id_materie = 2,
+                            id_utilizator = 4,
+                            salariu = 7800m
                         });
                 });
 
@@ -456,6 +698,71 @@ namespace App_Facultate.Migrations
                         {
                             id_Specializare = 5,
                             denumire_specializare = "Asistenta sociala"
+                        },
+                        new
+                        {
+                            id_Specializare = 6,
+                            denumire_specializare = "Computer science"
+                        });
+                });
+
+            modelBuilder.Entity("Models.subject_category", b =>
+                {
+                    b.Property<int>("id_subject_category")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Category_Jobsid_category_job")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Materiiid_materie")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_category_job")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_materie")
+                        .HasColumnType("int");
+
+                    b.HasKey("id_subject_category");
+
+                    b.HasIndex("Category_Jobsid_category_job");
+
+                    b.HasIndex("Materiiid_materie");
+
+                    b.ToTable("subject_category");
+
+                    b.HasData(
+                        new
+                        {
+                            id_subject_category = 1,
+                            id_category_job = 4,
+                            id_materie = 9
+                        },
+                        new
+                        {
+                            id_subject_category = 2,
+                            id_category_job = 2,
+                            id_materie = 9
+                        },
+                        new
+                        {
+                            id_subject_category = 3,
+                            id_category_job = 3,
+                            id_materie = 10
+                        },
+                        new
+                        {
+                            id_subject_category = 4,
+                            id_category_job = 1,
+                            id_materie = 11
+                        },
+                        new
+                        {
+                            id_subject_category = 5,
+                            id_category_job = 2,
+                            id_materie = 10
                         });
                 });
 
@@ -498,6 +805,15 @@ namespace App_Facultate.Migrations
                     b.Navigation("Studenti");
                 });
 
+            modelBuilder.Entity("Models.Jobs", b =>
+                {
+                    b.HasOne("Models.Category_Jobs", "Category_Jobs")
+                        .WithMany()
+                        .HasForeignKey("Category_Jobsid_category_job");
+
+                    b.Navigation("Category_Jobs");
+                });
+
             modelBuilder.Entity("Models.Materii", b =>
                 {
                     b.HasOne("Model.Studenti", "Studenti")
@@ -529,6 +845,21 @@ namespace App_Facultate.Migrations
                     b.Navigation("Materii");
 
                     b.Navigation("Utilizatori");
+                });
+
+            modelBuilder.Entity("Models.subject_category", b =>
+                {
+                    b.HasOne("Models.Category_Jobs", "Category_Jobs")
+                        .WithMany()
+                        .HasForeignKey("Category_Jobsid_category_job");
+
+                    b.HasOne("Models.Materii", "Materii")
+                        .WithMany()
+                        .HasForeignKey("Materiiid_materie");
+
+                    b.Navigation("Category_Jobs");
+
+                    b.Navigation("Materii");
                 });
 #pragma warning restore 612, 618
         }
