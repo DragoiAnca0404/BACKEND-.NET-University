@@ -15,16 +15,16 @@ namespace App_Facultate.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.17")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.17");
 
             modelBuilder.Entity("Model.Administratori", b =>
                 {
                     b.Property<int>("id_administrator")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Utilizatoriid_utilizator")
                         .HasColumnType("int");
@@ -51,7 +51,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_student")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Specializariid_Specializare")
                         .HasColumnType("int");
@@ -119,7 +119,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_utilizator")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
@@ -228,7 +228,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_Calificativ")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CurrentDateGrade")
                         .IsRequired()
@@ -370,9 +370,22 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_category_job")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
+
+                    b.Property<string>("atributii_job")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("denumire_categorie_job")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("descriere_job")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("quality")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -385,22 +398,163 @@ namespace App_Facultate.Migrations
                         new
                         {
                             id_category_job = 4,
-                            denumire_categorie_job = "Data Analyst"
+                            atributii_job = "Analizezi datele folosind statistici și matematică.\r\nProgramezi, în special în limbaje precum Python sau R.\r\nLucrezi cu baze de date și cunoști limbajul SQL.\r\nCreezi vizualizări pentru a prezenta rezultatele.\r\nFolosești instrumente precum Excel, Pandas, NumPy pentru analiză.\r\nÎnțelegi conceptele statistice de bază.",
+                            denumire_categorie_job = "Data Analyst",
+                            descriere_job = "În mod succint, un analist de date colectează, analizează și interpretează date pentru a oferi informații valoroase în procesul decizional al unei organizații. Pentru a deveni un astfel de profesionist, trebuie să înveți să:\r\n\r\n",
+                            quality = "Writing and communication, Statistical knowledge, Problem-solving skills, Creating dashboards and reports"
                         },
                         new
                         {
                             id_category_job = 3,
-                            denumire_categorie_job = "Frontend DEVELOPER"
+                            atributii_job = "HTML: Înțelegerea structurii paginilor web folosind limbajul de marcă HTML pentru a defini elementele.\r\n\r\nCSS: Cunoașterea stilurilor de formatare și design folosind CSS pentru a da aspectul dorit paginilor web.\r\n\r\nJavaScript: Învățarea limbajului de programare JavaScript pentru adăugarea de interactivitate și funcționalități la paginile web.\r\n\r\nResponsive Design: Abilitatea de a crea pagini web care se adaptează la diferite dimensiuni de ecran (dispozitive desktop, tablete, telefoane mobile).\r\n\r\nFramework-uri Frontend: Cunoașterea unor cadre de lucru precum React, Angular sau Vue.js pentru dezvoltarea mai eficientă și organizată a interfețelor.\r\n\r\nVersion Control/Git: Înțelegerea sistemelor de control al versiunilor, cum ar fi Git, pentru colaborare și gestionarea eficientă a codului. ",
+                            denumire_categorie_job = "Frontend DEVELOPER",
+                            descriere_job = "Un dezvoltator de frontend este responsabil pentru crearea și implementarea componentelor vizuale ale unei aplicații web sau mobile.Pentru a deveni un dezvoltator de frontend, trebuie să înveți următoarele:\r\n\r\n",
+                            quality = "Writing and communication,UI/UX Design Skills, Problem-solving skills, Gândire analitică, Javascript, CSS, HTML, Framework"
                         },
                         new
                         {
                             id_category_job = 2,
-                            denumire_categorie_job = "Backend DEVELOPER"
+                            atributii_job = "Limbaje de programare: Stăpânește cel puțin un limbaj de programare folosit în dezvoltarea backend, cum ar fi Python, Java, PHP, Ruby, Node.js, Go, etc.\r\n\r\nBaze de date: Înțelege conceptele bazelor de date și cunoaște SQL pentru a manipula și stoca datele în mod eficient.\r\n\r\nAPI-uri: Învățați să creați și să gestionați API-uri (Application Programming Interfaces) pentru a permite comunicația între frontend și backend.\r\n\r\nFramework-uri: Folosește cadre de lucru backend precum Django (Python), Ruby on Rails (Ruby), Spring (Java), Express.js (Node.js) pentru a dezvolta rapid și eficient. ",
+                            denumire_categorie_job = "Backend DEVELOPER",
+                            descriere_job = "Un dezvoltator de backend este responsabil pentru partea din spate a unei aplicații, care gestionează logica, stocarea datelor și comunicarea cu serverul. Pentru a deveni un dezvoltator de backend, trebuie să înveți următoarele:\r\n\r\n ",
+                            quality = "Writing and communication, Familiarity with Servers, Problem-solving skills, Team player, Knowledge of APIs"
                         },
                         new
                         {
                             id_category_job = 1,
-                            denumire_categorie_job = "Software Development"
+                            atributii_job = "Analiza Cerințelor: Înțelegerea detaliată a cerințelor utilizatorilor și a contextului în care va fi utilizat software-ul.\r\n\r\nProiectarea: Crearea unui plan sau unui design al arhitecturii și a funcționalităților software-ului.\r\n\r\nProgramare: Scrierea codului sursă folosind diverse limbaje de programare și tehnologii.\r\n\r\nTestare: Verificarea și validarea software-ului pentru a identifica erori și asigura funcționarea corectă.\r\n\r\nDebugging: Identificarea și corectarea erorilor și a problemelor de cod. ",
+                            denumire_categorie_job = "Software Development",
+                            descriere_job = "Dezvoltarea software implică creația, proiectarea și menținerea aplicațiilor și programelor informatice. Acest proces se referă la transformarea cerințelor și nevoilor utilizatorilor în soluții tehnice funcționale și utile. Iată o privire de ansamblu asupra dezvoltării software și ce presupune:\r\n\r\n ",
+                            quality = "Writing and communication, Statistical knowledge, Problem-solving skills, Programming Languages, Team player, Algorithm and Data Structures"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Job_qualities", b =>
+                {
+                    b.Property<int>("id_job_quality")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("Category_Jobsid_category_job")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_category_job")
+                        .HasColumnType("int");
+
+                    b.Property<string>("quality")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("id_job_quality");
+
+                    b.HasIndex("Category_Jobsid_category_job");
+
+                    b.ToTable("Job_qualities");
+
+                    b.HasData(
+                        new
+                        {
+                            id_job_quality = 1,
+                            id_category_job = 1,
+                            quality = "Gândire analitică"
+                        },
+                        new
+                        {
+                            id_job_quality = 2,
+                            id_category_job = 1,
+                            quality = "Team player"
+                        },
+                        new
+                        {
+                            id_job_quality = 3,
+                            id_category_job = 1,
+                            quality = "Problem-solving skills"
+                        },
+                        new
+                        {
+                            id_job_quality = 4,
+                            id_category_job = 1,
+                            quality = "Organizat"
+                        },
+                        new
+                        {
+                            id_job_quality = 12,
+                            id_category_job = 2,
+                            quality = "Familiarity with Servers"
+                        },
+                        new
+                        {
+                            id_job_quality = 22,
+                            id_category_job = 2,
+                            quality = "Team player"
+                        },
+                        new
+                        {
+                            id_job_quality = 32,
+                            id_category_job = 2,
+                            quality = "Problem-solving skills"
+                        },
+                        new
+                        {
+                            id_job_quality = 42,
+                            id_category_job = 2,
+                            quality = "Organizat"
+                        },
+                        new
+                        {
+                            id_job_quality = 43,
+                            id_category_job = 2,
+                            quality = "Knowledge of APIs"
+                        },
+                        new
+                        {
+                            id_job_quality = 13,
+                            id_category_job = 3,
+                            quality = "HTML"
+                        },
+                        new
+                        {
+                            id_job_quality = 23,
+                            id_category_job = 3,
+                            quality = "CSS"
+                        },
+                        new
+                        {
+                            id_job_quality = 33,
+                            id_category_job = 3,
+                            quality = "Frameworks and Libraries"
+                        },
+                        new
+                        {
+                            id_job_quality = 47,
+                            id_category_job = 3,
+                            quality = "JavaScript"
+                        },
+                        new
+                        {
+                            id_job_quality = 15,
+                            id_category_job = 4,
+                            quality = "Writing and communication"
+                        },
+                        new
+                        {
+                            id_job_quality = 25,
+                            id_category_job = 4,
+                            quality = "Statistical knowledge"
+                        },
+                        new
+                        {
+                            id_job_quality = 35,
+                            id_category_job = 4,
+                            quality = "Problem-solving skills"
+                        },
+                        new
+                        {
+                            id_job_quality = 45,
+                            id_category_job = 4,
+                            quality = "Creating dashboards and reports"
                         });
                 });
 
@@ -409,7 +563,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_job")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Category_Jobsid_category_job")
                         .HasColumnType("int");
@@ -434,7 +588,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_materie")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Studentiid_student")
                         .HasColumnType("int");
@@ -527,7 +681,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_orar")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Materiiid_materie")
                         .HasColumnType("int");
@@ -600,7 +754,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_profesor")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Materiiid_materie")
                         .HasColumnType("int");
@@ -644,14 +798,6 @@ namespace App_Facultate.Migrations
                             id_materie = 2,
                             id_utilizator = 4,
                             salariu = 5800m
-                        },
-                        new
-                        {
-                            id_profesor = 3,
-                            grad = 3,
-                            id_materie = 2,
-                            id_utilizator = 4,
-                            salariu = 7800m
                         });
                 });
 
@@ -660,7 +806,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_Specializare")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("denumire_specializare")
                         .IsRequired()
@@ -709,7 +855,7 @@ namespace App_Facultate.Migrations
                     b.Property<int>("id_subject_category")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("Category_Jobsid_category_job")
                         .HasColumnType("int");
@@ -801,6 +947,15 @@ namespace App_Facultate.Migrations
                     b.Navigation("Materii");
 
                     b.Navigation("Studenti");
+                });
+
+            modelBuilder.Entity("Models.Job_qualities", b =>
+                {
+                    b.HasOne("Models.Category_Jobs", "Category_Jobs")
+                        .WithMany()
+                        .HasForeignKey("Category_Jobsid_category_job");
+
+                    b.Navigation("Category_Jobs");
                 });
 
             modelBuilder.Entity("Models.Jobs", b =>

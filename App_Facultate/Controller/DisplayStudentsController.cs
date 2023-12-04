@@ -20,10 +20,7 @@ namespace App_Facultate.Controller
         {
             _context = context;
         }
-
-        // GET: api/DisplayStudents
      
-
         // GET: api/DisplayStudents
         [HttpGet]
         public async Task<ActionResult<Materii>> GetMaterii(string denumire_materie)

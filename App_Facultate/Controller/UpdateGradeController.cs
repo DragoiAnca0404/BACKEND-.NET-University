@@ -46,7 +46,6 @@ namespace App_Facultate.Controller
                     throw;
                 }
             }
-
             return NoContent();
         }
 

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Models;
 using System.Security.Cryptography.X509Certificates;
+using System.Collections;
 
 namespace App_Facultate.Controller
 {
@@ -22,106 +23,107 @@ namespace App_Facultate.Controller
             _context = context;
         }
 
-        // GET: api/JobPrediction
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category_Jobs>>> GetCategory_Jobs()
+        public class JobCategory
         {
-            return await _context.Category_Jobs.ToListAsync();
+            public string Job { get; set; }
+            public string Quality { get; set; }
         }
+
 
         // GET: api/JobPrediction/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Category_Jobs>> GetCategory_Jobs(int id)
+        [HttpGet]
+        public async Task<ActionResult<List<object>>> GetCategory_Jobs(string username)
         {
-            var category_Jobs = await _context.Category_Jobs.FindAsync(id);
+            var id_student = _context.Utilizatori.Where(x => x.username.Equals(username)).
+                Join(_context.Studenti,
+                s => s.id_utilizator,
+                w => w.id_utilizator,
+                (s, w) => new { s, w }).Select(y => new { id_student = y.w.id_student }).ToList();
 
-            if (category_Jobs == null)
+            var category_Jobs = await _context.Category_Jobs.FindAsync(id_student.First().id_student);
+
+            var grades_subjects = _context.Calificative
+       .Where(w => w.id_student.Equals(id_student.First().id_student))
+       .Join(_context.Materii,
+             u => u.id_materie,
+             s => s.id_materie,
+             (u, s) => new { u, s })
+       .GroupBy(z => z.s.denumire_materie)
+       .Select(group => new
+       {
+           denumire_materie = group.Key,
+           average_grade = group.Average(item => item.u.nota)
+       })
+       .OrderByDescending(item => item.average_grade)
+       .ToList();
+
+            string result = "";
+            string message = "";
+
+            List<object> resultItems = new List<object>();
+
+            List<string> highPerformingSubjects = new List<string>();
+            bool foundExceptional = false;
+            bool evaluatedExceptionalTwo = false;
+            bool evaluatedExceptional3 = false;
+            bool evaluatedExceptional4 = false;
+
+            foreach (var grade_subject in grades_subjects)
             {
-                return NotFound();
-            }
+                double averageGrade = grade_subject.average_grade;
 
-            return category_Jobs;
-        }
-
-        // PUT: api/JobPrediction/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory_Jobs(int id, Category_Jobs category_Jobs)
-        {
-            if (id != category_Jobs.id_category_job)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(category_Jobs).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!Category_JobsExists(id))
+                if (averageGrade >= 9 && averageGrade <= 10 && !foundExceptional)
                 {
-                    return NotFound();
+                    evaluatedExceptionalTwo = true;
+                    var jobs_category = GetJobsCategory(grade_subject.denumire_materie);
+                    resultItems.AddRange(jobs_category);
+                    message = "Felicitari ai rezultate exceptionale!";
                 }
-                else
+                else if (averageGrade >= 7 && averageGrade < 9 && !foundExceptional && !evaluatedExceptionalTwo)
                 {
-                    throw;
+                    evaluatedExceptional3 = true;
+                    var jobs_category = GetJobsCategory(grade_subject.denumire_materie);
+                    resultItems.AddRange(jobs_category);
+                    message = "Ai note foarte bune, inca un pic efort si atingi perfectiunea.";
+                }
+                else if (averageGrade >= 6 && averageGrade < 8 && !evaluatedExceptionalTwo && !evaluatedExceptional3 && !foundExceptional)
+                {
+                    evaluatedExceptional4 = true;
+                    var jobs_category = GetJobsCategory(grade_subject.denumire_materie);
+                    resultItems.AddRange(jobs_category);
+                    message = "Notele tale sunt satisfacatoare, dar cu putin efort poti obtine note mai bune.";
+                }
+                else if (averageGrade >= 1 && averageGrade < 6 && !evaluatedExceptionalTwo && !evaluatedExceptional3 && !foundExceptional && !evaluatedExceptional4)
+                {
+                    result = "Fail";
+                    message = "Imi pare rau, dar notele tale actuale nu pot defini ce joburi ti se potrivesc momentan.";
+                    return Ok(new { Message = message, Result = result });
                 }
             }
-
-            return NoContent();
+            return Ok(new { Message = message, Result = resultItems });
         }
 
-        // POST: api/JobPrediction
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Category_Jobs>> PostCategory_Jobs(Category_Jobs category_Jobs, int id_user)
+
+        private List<object> GetJobsCategory(string denumireMaterie)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Datele primite sunt invalide.");
-            }
-
-            var id_student = _context.Utilizatori.Where(s => s.id_utilizator.Equals(id_user))
-                .Join(_context.Studenti,
-                u => u.id_utilizator,
-                s => s.id_utilizator, (u, s) => new
-                { s, u }).Select(s => new { s.s.id_student }).ToList();
-
-            // Obținem calificativele din baza de date pentru student
-           // var calificative = _context.Utilizatori.Where(s => s.id_utilizator.Equals(id_user)).
-               // Join(_context.Calificative,)
-
-
-
-            _context.Category_Jobs.Add(category_Jobs);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCategory_Jobs", new { id = category_Jobs.id_category_job }, category_Jobs);
-        }
-
-        // DELETE: api/JobPrediction/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory_Jobs(int id)
-        {
-            var category_Jobs = await _context.Category_Jobs.FindAsync(id);
-            if (category_Jobs == null)
-            {
-                return NotFound();
-            }
-
-            _context.Category_Jobs.Remove(category_Jobs);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool Category_JobsExists(int id)
-        {
-            return _context.Category_Jobs.Any(e => e.id_category_job == id);
+            return _context.Materii
+                .Where(w => w.denumire_materie.Equals(denumireMaterie))
+                .Join(_context.subject_category,
+                    u => u.id_materie,
+                    s => s.id_materie,
+                    (u, s) => new { u, s })
+                .Join(_context.Category_Jobs,
+                    a => a.s.id_category_job,
+                    b => b.id_category_job,
+                    (a, b) => new { a, b })
+                .Select(group => new
+                {
+                    job = group.b.denumire_categorie_job,
+                    quality = group.b.quality,
+                    descriere = group.b.descriere_job,
+                    atributii = group.b.atributii_job
+                })
+                .ToList<object>();
         }
     }
 }

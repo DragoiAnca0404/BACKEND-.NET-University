@@ -47,13 +47,6 @@ namespace App_Facultate.Controller
         [HttpGet("ViewGradesStudent")]
         public async Task<ActionResult<IEnumerable<Materii>>> GetCalificative(string username, string denumire_materie)
         {
-            /*  var grades_student = _context.Calificative.Where(w => w.id_student.Equals(id_student))
-                  .Join(_context.Materii,
-                  u => u.id_materie,
-                  s => s.id_materie,
-                  (u, s) => new { u, s }).Select(z => new { denumire_materie = z.s.denumire_materie, grade = z.u.nota });
-            */
-
             var id_student = _context.Utilizatori.Where(x => x.username.Equals(username)).
                 Join(_context.Studenti,
                 s => s.id_utilizator,
@@ -75,28 +68,16 @@ namespace App_Facultate.Controller
         public async Task<ActionResult<IEnumerable<Materii>>> GetAllSujects(string username)
         {
             var id_student = _context.Utilizatori.Where(w => w.username.Equals(username))
-    .Join(_context.Studenti,
-    a => a.id_utilizator,
-    b => b.id_utilizator,
-    (a, b) => new { a, b })
-    .Select(e => new { id_student = e.b.id_student }).ToList();
+                         .Join(_context.Studenti,
+                         a => a.id_utilizator,
+                         b => b.id_utilizator,
+                        (a, b) => new { a, b })
+                         .Select(e => new { id_student = e.b.id_student }).ToList();
 
             var subjects = _context.Materii.Where(w=> w.id_student.Equals(id_student.First().id_student)).
-                Select(z => new { denumire_materie = z.denumire_materie });
+                Select(z => new {denumire_materie = z.denumire_materie});
 
             return Ok(subjects);
-        }
-
-        [HttpGet("ViewGradesSubject")]
-        public async Task<ActionResult<IEnumerable<Materii>>> GetGradesSubject(string denumire_materie, int id_student)
-        {
-            var id_subject = _context.Materii.Where(w => w.denumire_materie.Equals(denumire_materie))
-                .Select(s=> new { id_materie = s.id_materie}).ToList();
-
-            var grades_subject_student = _context.Calificative.Where(w => w.id_student.Equals(id_student) && w.id_materie.Equals(id_subject.First().id_materie))
-                .Select(s=> new {id_calificativ = s.id_Calificativ, nota = s.nota});
-
-            return Ok(grades_subject_student);
         }
     }
 }

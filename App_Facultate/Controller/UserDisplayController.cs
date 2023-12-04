@@ -25,10 +25,6 @@ namespace App_Facultate.Controller
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Utilizatori>>> GetUtilizatori(string username)
         {
-
-           // var username_new = _context.Utilizatori.Where(s => s.username.Equals(username)).ToList();
-
-
             var admin = _context.Utilizatori.Where(s => s.username.Equals(username)).Join(_context.Administratori,
                             u => u.id_utilizator,
                             s => s.id_utilizator,
@@ -68,7 +64,6 @@ namespace App_Facultate.Controller
                 return Ok(teacher);
             }
             return NotFound();
-
         }
     }
 }
