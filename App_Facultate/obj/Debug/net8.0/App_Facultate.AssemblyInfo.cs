@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("App_Facultate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a18086d87cd777da35094247059a029addc7fb9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19d68103a276714439c9b056165139850e80d0a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("App_Facultate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("App_Facultate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
